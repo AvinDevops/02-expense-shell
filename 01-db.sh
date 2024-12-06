@@ -9,16 +9,17 @@ LOGFILE=/tmp/$SCRIPTNAME-$TIMESTAMP.log
 #creating colors user variables
 R="\e[31m"
 G="\e[32m"
+Y="\e[33m"
 N="\e[0m"
 
 #creating CHECKSTATUS function
 CHECKSTATUS(){
     if [ $1 -ne 0 ]
     then
-        echo -e "$2...is $R Failed $N"
+        echo -e "$Y $2 $N...is $R Failed $N"
         exit 1
     else
-        echo -e "$2...is $G Success $N"
+        echo -e "$Y $2 $N...is $G Success $N"
     fi
 }
 
@@ -32,14 +33,14 @@ else
 fi
 
 #Main code
-dnf install mysql-server -y &>> $LOGFILE
+dnf install mysql-server -y &>>$LOGFILE
 CHECKSTATUS $? "Installing mysql-server"
 
-systemctl enable mysqld &>> $LOGFILE
+systemctl enable mysqld &>>$LOGFILE
 CHECKSTATUS $? "Enabling mysql-server"
 
-systemctl start mysqld &>> $LOGFILE
+systemctl start mysqld &>>$LOGFILE
 CHECKSTATUS $? "Starting mysql-server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>> $LOGFILE
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 CHECKSTATUS $? "Setting root password for mysql-server"
