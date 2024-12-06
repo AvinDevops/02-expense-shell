@@ -65,3 +65,23 @@ CHECKSTATUS $? "unzipping backend.zip"
 npm install &>>$LOGFILE
 CHECKSTATUS $? "Installing dependencies"
 
+cp /home/ec2-user/02-expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+CHECKSTATUS $? "copying backend.service to etc dir"
+
+systemctl daemon-reload &>>$LOGFILE
+CHECKSTATUS $? "Starting Daemon reloading"
+
+systemctl start backend &>>$LOGFILE
+CHECKSTATUS $? "Starting backend service"
+
+systemctl enable backend &>>$LOGFILE
+CHECKSTATUS $? "Enabiling backend service"
+
+dnf install mysql -y &>>$LOGFILE
+CHECKSTATUS $? "Installing mysql client"
+
+mysql -h db.avinexpense.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOGFILE
+CHECKSTATUS $? "Loading backend.sql schema"
+
+systemctl restart backend &>>$LOGFILE
+CHECKSTATUS $? "Restarting backend service"
