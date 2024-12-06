@@ -42,5 +42,11 @@ CHECKSTATUS $? "Enabiling nodejs 20 version"
 dnf install nodejs -y &>>$LOGFILE
 CHECKSTATUS $? "Installing nodejs"
 
-useradd expense &>>$LOGFILE
-CHECKSTATUS $? "added expense user"
+id expense &>>$LOGFILE 
+if [ $? -ne 0 ]
+then
+    useradd expense &>>$LOGFILE
+    CHECKSTATUS $? "creating expense user"
+else
+    echo "expense user is already created"
+fi
