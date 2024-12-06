@@ -42,5 +42,12 @@ CHECKSTATUS $? "Enabling mysql-server"
 systemctl start mysqld &>>$LOGFILE
 CHECKSTATUS $? "Starting mysql-server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
-CHECKSTATUS $? "Setting root password for mysql-server"
+#mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+mysql -h db.avinexpense.online -uroot -pExpenseApp@1 -e 'show databases;'
+if [ $? -ne 0 ]
+then
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+    CHECKSTATUS $? "Setting root password for mysql-server"
+else
+    echo "$Y Root password is already set $N"
+fi
