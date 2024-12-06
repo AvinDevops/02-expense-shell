@@ -48,5 +48,5 @@ then
     useradd expense &>>$LOGFILE
     CHECKSTATUS $? "creating expense user"
 else
-    echo "expense user is already created"
+    echo -e "$Y expense user is$N $G already created $N"
 fi
