@@ -42,5 +42,5 @@ CHECKSTATUS $? "Enabling mysql-server"
 systemctl start mysqld &>>$LOGFILE
 CHECKSTATUS $? "Starting mysql-server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 CHECKSTATUS $? "Setting root password for mysql-server"
