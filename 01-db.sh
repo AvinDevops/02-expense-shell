@@ -29,7 +29,7 @@ then
     echo "Please access with root user access"
     exit 1
 else
-    echo "you have root access, please procced"
+    echo "you have root access, please proceed"
 fi
 
 #Main code
@@ -49,5 +49,5 @@ then
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
     CHECKSTATUS $? "Setting root password for mysql-server"
 else
-    echo -e "$Y Root password is already set $N"
+    echo -e "$R Root password is already set $N"
 fi
