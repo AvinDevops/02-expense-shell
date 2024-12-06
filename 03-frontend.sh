@@ -18,7 +18,7 @@ then
     echo "please access with root user"
     exit 1
 else
-    echo "you don't have root access"
+    echo "you have root access"
 fi
 
 CHECKSTATUS(){
@@ -28,6 +28,7 @@ CHECKSTATUS(){
         exit 1
     else
         echo -e "$Y $2...is$N $R Success $N"
+    fi
 }
 
 #Main code
