@@ -27,7 +27,7 @@ CHECKSTATUS(){
         echo -e "$Y $2...is$N $R Failed $N"
         exit 1
     else
-        echo -e "$Y $2...is$N $R Success $N"
+        echo -e "$Y $2...is$N $G Success $N"
     fi
 }
 
