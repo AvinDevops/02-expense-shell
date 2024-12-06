@@ -59,6 +59,8 @@ CHECKSTATUS $? "Downloading file in tmp"
 
 cd /app
 
+rm -rf /app/*
+
 unzip /tmp/backend.zip &>>$LOGFILE
 CHECKSTATUS $? "unzipping backend.zip"
 
