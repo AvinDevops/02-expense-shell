@@ -43,4 +43,4 @@ dnf install nodejs -y &>>$LOGFILE
 CHECKSTATUS $? "Installing nodejs"
 
 useradd expense &>>$LOGFILE
-CHECKSTATUS $? "Installing nodejs"
+CHECKSTATUS $? "added expense user"
